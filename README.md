@@ -6,7 +6,7 @@ Optional environment variable 'DOWNLOAD_RATE' will set maximum download rate. Se
 
 Optional environment variable 'DOWNLOAD_SUBS' - set to 'yes' (default value) to download and embed any subtitles. Set to 'no' to ignore subtitles.
 
-Optional environment variable 'APPRISE_SERVICE' -if set, the container will send notifications to chosen service via Apprise.
+Optional environment variable 'APPRISE_SERVICE' -if set, the container will send notifications to chosen service via Apprise. See [Apprise documentation](https://pypi.org/project/apprise/) for details.
 
 Optional environment varial 'SLEEP_INTERVAL' default to 1d (1 day) to sleep before restarting.
 
