@@ -8,6 +8,8 @@ Optional environment variable 'DOWNLOAD_SUBS' - set to 'yes' (default value) to 
 
 Optional environment variable 'APPRISE_SERVICE' -if set, the container will send notifications to chosen service via Apprise.
 
+Optional environment varial 'SLEEP_INTERVAL' default to 1d (1 day) to sleep before restarting.
+
 Example docker-compose entry:
 
 ```
@@ -17,6 +19,7 @@ vidgrab:
   environment:
     - DOWNLOAD_RATE=500K
     - APPRISE_SERVICE=discord://webhook_id/webhook_token
+    - SLEEP_INTERVAL=1d
   volumes:
     - /path/to/download/directory:/downloads
   restart: unless-stopped

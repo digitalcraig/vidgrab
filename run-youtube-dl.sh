@@ -6,6 +6,7 @@ python3 -m pip install --upgrade git+https://github.com/yt-dlp/yt-dlp.git@releas
 
 RATE="${DOWNLOAD_RATE:-2M}"
 SUBS="${DOWNLOAD_SUBS:-yes}"
+SLEEP="${SLEEP_INTERVAL:1d}"
 
 if [[ ! -z $APPRISE_SERVICE ]]; then
     NOTIFY_COMMAND="apprise -b 'Downloaded:"
@@ -28,21 +29,20 @@ then
         --write-annotations \
         --sleep-interval 5 \
         --max-sleep-interval 30 \
-        --write-info-json \        
+        --write-info-json \
         --ignore-errors \
         --no-continue \
-        --no-overwrites \
-        --no-post-overwites
-        --embed-thumbnail \        
-        --add-metadata
+        --no-post-overwrites \
+        --embed-thumbnail \
+        --add-metadata \
         --download-archive /downloads/archive.txt \
         --match-filter "!is_live & !live" \
         --output "/downloads/%(uploader)s/%(uploader)s - %(upload_date)s - %(title)s.%(ext)s" \
-        --merge-output-format "mkv" 
-        --batch-file "/downloads/channels.txt" 
-        --cookies "/downloads/cookies.txt"
-        --cache-dir "/downloads/.cache"
-        -r "$RATE" 
+        --merge-output-format "mkv" \
+        --batch-file "/downloads/channels.txt" \
+        --cookies "/downloads/cookies.txt" \
+        --cache-dir "/downloads/.cache" \
+        -r "$RATE" \
         --exec '/do-notify.sh {}' \
         "$@"
 fi
@@ -57,24 +57,23 @@ then
         --write-annotations \
         --sleep-interval 5 \
         --max-sleep-interval 30 \
-        --write-info-json \        
+        --write-info-json \
         --ignore-errors \
         --no-continue \
-        --no-overwrites \
-        --no-post-overwites
-        --embed-thumbnail \        
-        --add-metadata
+        --no-post-overwites \
+        --embed-thumbnail \      
+        --add-metadata \
         --download-archive /downloads/archive.txt \
         --match-filter "!is_live & !live" \
         --output "/downloads/%(uploader)s/%(uploader)s - %(upload_date)s - %(title)s.%(ext)s" \
-        --merge-output-format "mkv" 
-        --batch-file "/downloads/channels.txt" 
-        --cookies "/downloads/cookies.txt"
-        --cache-dir "/downloads/.cache"
-        -r "$RATE" 
+        --merge-output-format "mkv" \ 
+        --batch-file "/downloads/channels.txt" \
+        --cookies "/downloads/cookies.txt" \
+        --cache-dir "/downloads/.cache" \
+        -r "$RATE"  \
         --exec '/do-notify.sh {}' \
         "$@"
 fi
 
-echo Sleeping for 1 day
-/bin/sleep 1d
+echo Sleeping for ${SLEEP_INTERVAL}
+/bin/sleep ${SLEEP_INTERVAL}
