@@ -32,4 +32,4 @@ Videos can be downloaded and played with Plex by creating a TV Show library and 
 
 
 ## Credits
-Based on [Docker image for yt-dlp](https://github.com/abstrakct/docker-yt-dlp), originally forked from Originally forked from timlinden
+Based on [Docker image for yt-dlp](https://github.com/abstrakct/docker-yt-dlp), originally forked from timlinden.
