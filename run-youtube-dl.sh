@@ -12,6 +12,19 @@ if [[ ! -z $APPRISE_SERVICE ]]; then
     NOTIFY_COMMAND="apprise -b 'Downloaded:"
 fi
 
+if [[ ! -f /downloads/channels.txt ]]; then
+    touch /downloads/channels.txt
+fi
+
+if [[ ! -f /downloads/cookies.txt ]]; then
+    touch /downloads/cookies.txt
+fi
+
+if [[ ! -d /downloads/.cache ]]; then
+    mkdir /downloads/.cache
+fi
+
+
 # TODO
 # Add --dateafter now-1week
 # Add --playlist-reverse
@@ -44,7 +57,7 @@ then
         --cache-dir "/downloads/.cache" \
         -r "$RATE" \
         --exec '/do-notify.sh {}' \
-        "$@"
+        ${EXTRA_ARGS}
 fi
 
 if [ "$SUBS" == "no" ]
@@ -72,7 +85,7 @@ then
         --cache-dir "/downloads/.cache" \
         -r "$RATE"  \
         --exec '/do-notify.sh {}' \
-        "$@"
+        ${EXTRA_ARGS} \
 fi
 
 echo Sleeping for ${SLEEP_INTERVAL}
