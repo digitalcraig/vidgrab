@@ -7,6 +7,7 @@ python3 -m pip install --upgrade git+https://github.com/yt-dlp/yt-dlp.git@releas
 RATE="${DOWNLOAD_RATE:-2M}"
 SUBS="${DOWNLOAD_SUBS:-yes}"
 SLEEP="${SLEEP_INTERVAL:1d}"
+ARGS="${EXRA_ARGS}"
 
 if [[ ! -z $APPRISE_SERVICE ]]; then
     NOTIFY_COMMAND="apprise -b 'Downloaded:"
@@ -52,7 +53,7 @@ then
         --cache-dir "/downloads/.cache" \
         -r "$RATE" \
         --exec '/do-notify.sh {}' \
-        ${EXTRA_ARGS}
+        ${ARGS}
 fi
 
 if [ "$SUBS" == "no" ]
@@ -80,8 +81,8 @@ then
         --cache-dir "/downloads/.cache" \
         -r "$RATE"  \
         --exec '/do-notify.sh {}' \
-        ${EXTRA_ARGS} \
+        ${ARGS} \
 fi
 
-echo Sleeping for ${SLEEP_INTERVAL}
-/bin/sleep ${SLEEP_INTERVAL}
+echo Sleeping for ${SLEEP}
+/bin/sleep ${SLEEP}
