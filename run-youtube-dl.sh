@@ -4,9 +4,9 @@
 # pip install youtube-dl
 python3 -m pip install --upgrade git+https://github.com/yt-dlp/yt-dlp.git@release
 
-RATE="${DOWNLOAD_RATE:-2M}"
-SUBS="${DOWNLOAD_SUBS:-yes}"
-SLEEP="${SLEEP_INTERVAL:-1d}"
+RATE="${DOWNLOAD_RATE:=2M}"
+SUBS="${DOWNLOAD_SUBS:=yes}"
+SLEEP="${SLEEP_INTERVAL:=1d}"
 ARGS="${EXRA_ARGS}"
 
 if [[ ! -z $APPRISE_SERVICE ]]; then
